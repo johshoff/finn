@@ -5,3 +5,4 @@ authors = ["Johannes Hoff <johshoff@gmail.com>"]
 
 [dependencies]
 threadpool = "0.1.4"
+glob = "*"

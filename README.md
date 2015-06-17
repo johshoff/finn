@@ -23,5 +23,4 @@ TODO
 - Better handling of early return from threads. The two `tx` clones aren't very nice.
 - Documentation
 - Testing
-- Support glob searches
 - Support more search patterns (time, size, ...)
