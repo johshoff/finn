@@ -28,11 +28,14 @@ fn visit_dirs(dir: &Path, tx: Sender<VisitResult>, pattern: &Pattern) -> io::Res
                                                     .unwrap_or(false);
 
             if is_match {
-                println!("{}", path_for_name.to_str().unwrap());
+                println!("{}", path_for_name.to_str().unwrap_or("Error: Failed to get name for matching file"));
             }
 
             if try!(fs::metadata(&path)).is_dir() {
-                tx.send(VisitResult::NewPath(path)).unwrap();
+                match tx.send(VisitResult::NewPath(path)) {
+                    Ok(_)  => (),
+                    Err(_) => println!("Failed to recurse directory from thread"),
+                }
             }
         }
     }
